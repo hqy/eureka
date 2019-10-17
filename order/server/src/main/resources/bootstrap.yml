@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: order
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: CONFIG
+      profile: test
+    stream:
+      bindings:
+        myMessage:
+          group: order
+          content-type: application/json
+  sleuth:
+    sampler:
+      probability: 1
+  zipkin:
+    enabled: true
+    base-url: http://192.168.178.129:9411/
+    sender:
+      type: WEB
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+    getProductInfoList:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+feign:
+  hystrix:
+    enabled: true
+
+
+# 暴露actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    org.springframework.cloud.openfeign: debug
+

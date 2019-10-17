@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/houlyoyang/config-repo
+#          uri: https://github.com/hqy/config-repo
+          username: 493500678@qq.com
+          password: h493500678
+          basedir: C:\Users\ZGD\Desktop\springcloud\config\basedir
+    bus:
+      trace:
+        enabled: true
+eureka:
+  client:
+    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      expose: "*"
+
+
+
